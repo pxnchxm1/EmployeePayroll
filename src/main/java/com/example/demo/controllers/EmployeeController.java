@@ -32,12 +32,12 @@ public class EmployeeController {
 	}
 	@PostMapping("/create")
     public String createNewEmployee(@RequestBody EmployeePayrollDTO dto) {
-        return eps.createEmployee(new EmployeePayrollDTO(dto.getId(),dto.getSalary(),dto.getName()));
+        return eps.createEmployee(dto);
     }
 	
 	@PutMapping("/update/{id}")
 	public EmployeePayrollDTO updateEmployee(@PathVariable long id,@RequestBody EmployeePayrollDTO dto) {
-		return eps.updateEmployee(id,new EmployeePayrollDTO(dto.getId(),dto.getSalary(),dto.getName()));
+		return eps.updateEmployee(id,dto);
 	}
 	@DeleteMapping("/delete/{id}")
 	public void deleteEmployee(@PathVariable long id) {

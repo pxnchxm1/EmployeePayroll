@@ -12,7 +12,10 @@ import com.example.demo.models.EmployeePayrollModel;
 public class EmployeePayrollMapper {
 	
 	public EmployeePayrollDTO dataToDto(EmployeePayrollModel e) {
-		EmployeePayrollDTO emp = new EmployeePayrollDTO(e.getId(),e.getSalary(),e.getName());
+		EmployeePayrollDTO emp = new EmployeePayrollDTO();
+		emp.setId(e.getId());
+		emp.setName(e.getName());
+		emp.setSalary(e.getSalary());
 		return emp;
 	}
 	public EmployeePayrollModel DtoToData(EmployeePayrollDTO e) {
