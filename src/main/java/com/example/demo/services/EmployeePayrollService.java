@@ -11,6 +11,9 @@ import com.example.demo.dto.EmployeePayrollDTO;
 import com.example.demo.mappers.EmployeePayrollMapper;
 import com.example.demo.models.EmployeePayrollModel;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class EmployeePayrollService {
 	@Autowired
@@ -19,6 +22,9 @@ public class EmployeePayrollService {
 	List<EmployeePayrollModel> employeelist = new ArrayList<>(); 
 	
 	public List<EmployeePayrollDTO> getEmployee(){
+		log.info("Getting all employee details here...");
+		log.debug("This is a debug message");
+        log.error("This is an error message for demonstration");
 		return employeelist.stream().map(x->mapper.dataToDto(x)).collect(Collectors.toList());
 	}
 	public EmployeePayrollDTO getEmployeeById(long id) {
