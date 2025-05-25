@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class EmployeePayrollDTO {
 	private long id;
+	
 	private String name;
 	private double salary;
 
