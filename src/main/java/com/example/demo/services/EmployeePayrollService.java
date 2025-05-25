@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.EmployeePayrollDTO;
+import com.example.demo.exceptions.EmployeeNotFoundException;
 import com.example.demo.mappers.EmployeePayrollMapper;
 import com.example.demo.models.EmployeePayrollModel;
 
@@ -27,18 +28,11 @@ public class EmployeePayrollService {
         log.error("This is an error message for demonstration");
 		return employeelist.stream().map(x->mapper.dataToDto(x)).collect(Collectors.toList());
 	}
-	public EmployeePayrollDTO getEmployeeById(long id) {
-		try {
-			for(int i=0;i<employeelist.size();i++) {
-				if(employeelist.get(i).getId()==id) {
-					return mapper.dataToDto(employeelist.get(i));
-				}
-			}
-		}
-		catch(Exception e) {
-			System.out.println("EMPLOYEE NOT FOUND");
-		}
-		return null;
+	public EmployeePayrollModel getEmployeeById(long id) {
+		   return employeelist.stream()
+	                .filter(emp -> emp.getId() == id)
+	                .findFirst()
+	                .orElseThrow(() -> new EmployeeNotFoundException("Employee with ID " + id + " not found"));
 	}
 	
 	public String createEmployee(EmployeePayrollDTO d) {
